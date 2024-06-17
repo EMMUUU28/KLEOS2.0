@@ -1,0 +1,147 @@
+PixelMap
+
+# Auth (simple one need to do) - GAuth done
+
+# signup + after resume update
+- Resume to profile data extractor
+- remaining data extract from dynamic form
+
+# Github : extract project (link, name, dec, etc)
+
+
+# Quiz Test for profile (GK)
+
+
+# based on day task set quiz domain and ask MCQ and short answer question + code editor (if needed) 
+- daily scores out of 10 (day scores)
+- quiz report : graph, improvements
+
+
+@# Roadmap
+- make 
+- assist (map it to calander)
+
+# Timeline
+- dynamic timeline
+
+
+# Project Concept Recommendation 
+- based on profile skills 
+- real life trends
+
+
+@# Skill Assistment
+- survey 
+- certification
+- badges (pay for prime badges)
+- practicals
+- 
+
+# Internship alerts:
+- real time scrapping
+- old scrapped data render (filter : only latest 4 months data)
+- api : serp
+
+
+# Youtube video to quiz convert (max: 5 to 1 mins video):
+- user gives yt-url or select 
+- extract the text from it then make quize(question + 4 options + correct option)
+- save in db (recommend it in future for others)
+
+
+
+----------- User notification
+
+# integrated Email sys:
+- new job matched (algo runs every 24 hrs)
+- new Internship
+- 
+
+
+# twilo - message
+- whatsapp msg (most imp only)
+
+
+@end feature
+# django push notification... (need to search)
+ref : 
+- https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps/Tutorials/js13kGames/Re-engageable_Notifications_Push
+- https://www.youtube.com/watch?v=InKrxdeakMs
+
+
+
+
+
+
+
+# job posting extraction (web scrapping)
+- real time 
+- database
+
+
+
+# Skill assestment : 
+- Q&A
+- Quiz : llm (add the question in db then match for correction)
+
+
+
+
+
+# Gap analysis : algo + 
+- required skill in profile for the job he dream for (keyword matching)
+- new posted job matching 
+
+
+# Search your friend 
+- search and refer 
+
+
+
+
+- Calender fix
+
+
+
+# Business model : 
+- prime badges
+- prime mentors
+- prime certification
+- resume Assistment : (in detailed, improvements)
+- dynamic timeline : (based on campus placement, based on skills, dream role (rankeing))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
