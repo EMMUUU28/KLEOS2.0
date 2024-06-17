@@ -170,26 +170,26 @@ SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET=os.getenv("SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET")
 
 #PWA
 
-PWA_APP_NAME = "My PWA StudyLab App"
-PWA_APP_DESCRIPTION = "A fantastic Progressive Web App"
-PWA_APP_THEME_COLOR = "#007bff"
-PWA_APP_BACKGROUND_COLOR = "#ffffff"
-PWA_APP_DISPLAY = 'standalone'
-PWA_APP_SCOPE = '/'
-PWA_APP_ORIENTATION = 'portrait'
-PWA_APP_START_URL = '/'
-PWA_APP_ICONS = [
-    {
-        'src': '\static\img\illustrations\man-with-laptop-light.png',
-        'sizes': '160x160'
-    }
-]
-PWA_APP_ICONS_APPLE = [
-    {
-        'src': '\static\img\illustrations\man-with-laptop-light.png',
-        'sizes': '160x160'
-    }
-]
-PWA_APP_DIR = 'ltr'
-PWA_APP_LANG = 'en-US'
-PWA_SERVICE_WORKER_PATH = os.path.join(BASE_DIR, 'static/js', 'serviceworker.js')
+# PWA_APP_NAME = "My PWA StudyLab App"
+# PWA_APP_DESCRIPTION = "A fantastic Progressive Web App"
+# PWA_APP_THEME_COLOR = "#007bff"
+# PWA_APP_BACKGROUND_COLOR = "#ffffff"
+# PWA_APP_DISPLAY = 'standalone'
+# PWA_APP_SCOPE = '/'
+# PWA_APP_ORIENTATION = 'portrait'
+# PWA_APP_START_URL = '/'
+# PWA_APP_ICONS = [
+#     {
+#         'src': '\static\img\illustrations\man-with-laptop-light.png',
+#         'sizes': '160x160'
+#     }
+# ]
+# PWA_APP_ICONS_APPLE = [
+#     {
+#         'src': '\static\img\illustrations\man-with-laptop-light.png',
+#         'sizes': '160x160'
+#     }
+# ]
+# PWA_APP_DIR = 'ltr'
+# PWA_APP_LANG = 'en-US'
+# PWA_SERVICE_WORKER_PATH = os.path.join(BASE_DIR, 'static/js', 'serviceworker.js')

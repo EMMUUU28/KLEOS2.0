@@ -17,6 +17,7 @@ This README provides the steps to run Tha StudyLab Django project.
     - On Windows:
         ```bash
         python -m venv env
+
         ```
 
 2. **Activate the Virtual Environment**:
@@ -33,6 +34,8 @@ This README provides the steps to run Tha StudyLab Django project.
     - With the virtual environment activated, install the project dependencies using pip:
         ```bash
         pip install -r requirements.txt
+        pip install django-pwa
+        pip install roadmapper
         ```
 
 ## Running the Project
