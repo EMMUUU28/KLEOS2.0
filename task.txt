@@ -1,12 +1,21 @@
 PixelMap
 
+[@APP]
 # Auth (simple one need to do) - GAuth done
 
-# signup + after resume update
-- Resume to profile data extractor
-- remaining data extract from dynamic form
 
+# signup + after resume update
+- Resume to profile data extractor [@emmule]
+- remaining data extract from dynamic form [@emmule]
+
+[@APP]
 # Github : extract project (link, name, dec, etc)
+
+# Project Concept Recommendation 
+- based on profile skills 
+- real life trends
+
+
 
 
 # Quiz Test for profile (GK)
@@ -19,15 +28,14 @@ PixelMap
 
 @# Roadmap
 - make 
-- assist (map it to calander)
+- assist (map it to calander) @end
 
+[@APP]
 # Timeline
-- dynamic timeline
+- dynamic timeline (need to display , we have data in json format)
 
 
-# Project Concept Recommendation 
-- based on profile skills 
-- real life trends
+
 
 
 @# Skill Assistment
@@ -52,16 +60,18 @@ PixelMap
 
 ----------- User notification
 
+[@APP]
 # integrated Email sys:
 - new job matched (algo runs every 24 hrs)
 - new Internship
 - 
 
-
-# twilo - message
+[@janice]
+# twilo - message 
 - whatsapp msg (most imp only)
 
 
+[@emmule]
 @end feature
 # django push notification... (need to search)
 ref : 
@@ -73,7 +83,7 @@ ref :
 
 
 
-
+[@shaun]
 # job posting extraction (web scrapping)
 - real time 
 - database
@@ -88,11 +98,12 @@ ref :
 
 
 
-# Gap analysis : algo + 
-- required skill in profile for the job he dream for (keyword matching)
+# Gap analysis : algo + some formula 
+- required skill in profile for the job he dream for (keyword matching) [@emmule]
 - new posted job matching 
 
 
+[@APP]
 # Search your friend 
 - search and refer 
 
@@ -102,6 +113,8 @@ ref :
 - Calender fix
 
 
+[@APP]
+# Pay with card
 
 # Business model : 
 - prime badges
