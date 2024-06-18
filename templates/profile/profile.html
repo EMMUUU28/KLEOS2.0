@@ -250,9 +250,9 @@
                 </div>
               </div>
             </div>
-           
+          
           </div>
-
+          {% if workexp %}
           <div class="row mb-5">
             <h2>Work Experience</h2>
             {% for item in workexp %}
@@ -273,7 +273,8 @@
               {% endfor %}
     
             </div>
-        
+            {% endif %}
+
 
           {% if education %}
 

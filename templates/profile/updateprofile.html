@@ -4,8 +4,43 @@
 
 {% block content %}
 
-<h1 class="ps-4 pt-4" >Update Profile</h1>
+<h1 class="p-4" >Update Profile</h1>
+
+
+
+<form method="post" action="{% url 'updateprofile_resume' %}" enctype="multipart/form-data">
+  {% csrf_token %}
+
+  <div class="container">
+    <h5 class="">Update profile automatically by uploading your Resume: </h5>
+
+      <div class=" row">
+        <div class="pb-2 input-group col ">
+            <input
+              type="file"
+              name="pdf_files"
+              class="form-control"
+              id="pdf_files"
+              aria-describedby="inputGroupFileAddon04"
+              multiple
+              required
+              aria-label="Upload" />
+          </div>
+
+        
+          <div class="pb-2 col">
+            <button class="btn  btn-outline-primary" type="submit" id="inputGroupFileAddon04">Upload</button>
+          </div>
+      </div>
+</div>
+  
+</form>
+
+
+
+
 <div class="row p-4">
+  <h5 >Update profile mannually: </h5>
 <div class="col-xxxl ">
     <div class="card mb-4">
       <div class="card-header d-flex align-items-center justify-content-between">
@@ -154,8 +189,94 @@
 
 
 
-
+  
 
 </div>
+<div class="ps-4" > <h5  >Update Career Information: </h5></div>
+
+<div class="row p-4">
+  
+<div class="col-xxxl">
+  <div class="card mb-4">
+    <div class="card-header d-flex align-items-center justify-content-between">
+      <h5 class="mb-0">Additional Information</h5>
+    </div>
+    <div class="card-body">
+      <form action="{% url 'updatecareerinfo' %}" method="post">
+        {% csrf_token %}
+        
+        <div class="row mb-3">
+          <label class="col-sm-2 col-form-label" for="current_year">Current Year of Engineering</label>
+          <div class="col-sm-10">
+            <div class="input-group input-group-merge">
+              <span id="basic-icon-default-current_year2" class="input-group-text"><i class="bx bx-calendar"></i></span>
+              <input type="text" id="current_year" name="current_year" class="form-control" placeholder="Eg. Third Year" aria-describedby="basic-icon-default-current_year2" />
+            </div>
+          </div>
+        </div>
+        
+        <div class="row mb-3">
+          <label class="col-sm-2 col-form-label" for="dream_role">Dream Role</label>
+          <div class="col-sm-10">
+            <div class="input-group input-group-merge">
+              <span class="input-group-text"><i class="bx bx-rocket"></i></span>
+              <input type="text" id="dream_role" name="dream_role" class="form-control" placeholder="Eg. Software Engineer" aria-describedby="basic-icon-default-dream_role2" />
+            </div>
+          </div>
+        </div>
+        
+        <div class="row mb-3">
+          <label class="col-sm-2 col-form-label" for="linkedin">LinkedIn Link</label>
+          <div class="col-sm-10">
+            <div class="input-group input-group-merge">
+              <span class="input-group-text"><i class="bx bxl-linkedin"></i></span>
+              <input type="url" id="linkedin" name="linkedin" class="form-control" placeholder="https://www.linkedin.com/in/username" aria-describedby="basic-icon-default-linkedin2" />
+            </div>
+          </div>
+        </div>
+        
+        <div class="row mb-3">
+          <label class="col-sm-2 col-form-label" for="github">GitHub Link</label>
+          <div class="col-sm-10">
+            <div class="input-group input-group-merge">
+              <span class="input-group-text"><i class="bx bxl-github"></i></span>
+              <input type="url" id="github" name="github" class="form-control" placeholder="https://github.com/username" aria-describedby="basic-icon-default-github2" />
+            </div>
+          </div>
+        </div>
+        
+        <div class="row justify-content-end">
+          <div class="col-sm-10">
+            <button type="submit" class="btn btn-primary">Update</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+</div>
+
+
+<!-- <div id="toast" class=" p-4 fixed-bottom  container d-flex justify-content-end  ">
+  <div
+    class=" bs-toast toast fade show bg-success hidden"
+    role="alert"
+    aria-live="assertive"
+    aria-atomic="true">
+    <div class="toast-header">
+      <i class="bx bx-bell me-2"></i>
+      <div class="me-auto fw-medium">Profile Updated Successfully</div>
+
+      <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+    </div>
+    <div class="toast-body">
+     <a href="{% url 'profile' %}"><button class="btn  btn-info ">View Profile</button></a>
+    </div>
+  </div>
+  </div> -->
+
+
+
+
 {% endblock content %}
 
