@@ -1,4 +1,4 @@
-# RoadMMap
+# RoadMMap, StudyPlan, Resume Assistant 
 from django.shortcuts import render
 from django.http import HttpResponse, FileResponse
 import requests
@@ -35,9 +35,6 @@ import datetime
 
 def roadmap(request):
 
-    
-
-    
     url = f'https://roadmap.sh/pdfs/roadmaps/python.pdf'
     imageurl = f'https://emmubucket.s3.ap-south-1.amazonaws.com/roadmapimages/python.png'
     if request.method == 'POST':
@@ -285,7 +282,6 @@ def studyplan(request):
     return render(request, 'studyplan/studyplan.html', {'url' : url,'subject':subject})
 
 
-
 #resumeAssistant
 
 def get_pdf_text(pdf_docs):
@@ -347,7 +343,7 @@ def get_text_chunks(text):
 
 from django.contrib.auth.decorators import login_required
 import json
-
+from graph import graph_agent
 
     
 @login_required
@@ -366,7 +362,7 @@ def resumeassistant(request):
 
         cleaned_string = final_result.replace("'", '')
         clean_string = cleaned_string.replace('\n', '').replace('\\', '').replace('```', '').replace('json', '')
-        cleaned_string = cleaned_string.strip()
+        
         final_data = json.loads(clean_string) 
         # print(json.dumps(final_data, indent=4))
 
