@@ -15,13 +15,20 @@ def profile(request):
     education = Education.objects.filter(user=user)
     workexp = WorkExperience.objects.filter(user=user)
     skill_info = Skill.objects.filter(user=user)
+    career_info = CareerInfo.objects.filter(user=user).last()
+    
     print(education)
     print(workexp)
     print(skill_info)
     params = {
         'education':education,
         'workexp':workexp,
-        'skill':skill_info
+        'skill':skill_info,
+        'current_year': career_info.current_year,
+        'dream_role': career_info.dream_role,
+        'linkedin_link': career_info.linkedin_link,
+        'github_link': career_info.github_link
+        
     } 
     return render(request,'profile/profile.html', params)
 
@@ -147,7 +154,7 @@ def studymaterials(request):
 
 
 
-#Update Profile Using Resume 
+# Update Profile Using Resume 
 
 
 from django.shortcuts import render
@@ -319,9 +326,10 @@ def updatecareerinfo(request):
         dream_role = request.POST.get('dream_role')
         linkedin_link = request.POST.get('linkedin')
         github_link = request.POST.get('github')
-        
+        user=request.user
         # Create a new CareerInfo object and save the form data
         career_info = CareerInfo(
+            user=user,
             current_year=current_year,
             dream_role=dream_role,
             linkedin_link=linkedin_link,
@@ -330,3 +338,4 @@ def updatecareerinfo(request):
         career_info.save()
         return render(request, 'profile/updateprofile.html')
     return render(request, 'profile/updateprofile.html')
+

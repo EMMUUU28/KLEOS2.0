@@ -32,6 +32,7 @@ class Skill(models.Model):
     # Add more fields as needed for skills
 
 class CareerInfo(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     current_year = models.CharField(max_length=10)
     dream_role = models.CharField(max_length=255)
     linkedin_link = models.URLField(blank=True)
