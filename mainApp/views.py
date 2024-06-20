@@ -1,6 +1,11 @@
-from django.shortcuts import render,HttpResponse
-from .models import Skill,WorkExperience,Education,CareerInfo
+from django.shortcuts import render,HttpResponse, get_object_or_404
+from .models import Skill,WorkExperience,Education,CareerInfo, NotificationData, UserGitRepos
 from django.contrib.auth.decorators import login_required
+from django.http import JsonResponse
+
+
+import requests
+
 
 # Create your views here.
 def index(request):
@@ -313,20 +318,223 @@ def updateprofile_resume(request):
     
     return render(request, 'profile/updateprofile.html')
 
+
+
+
+def get_github_repos(username):
+    url = f'https://api.github.com/users/{username}/repos'
+    headers = {'Accept': 'application/vnd.github.v3+json'}
+
+    try:
+        response = requests.get(url, headers=headers)
+        response.raise_for_status()  # Raise an exception for bad responses
+        repos = response.json()
+
+        # Extracting repository details (title, description, link)
+        repo_details = []
+        for repo in repos:
+            title = repo['name']
+            description = repo['description'] if repo['description'] else 'No description'
+            link = repo['html_url']
+
+            repo_details.append({
+                'title': title,
+                'description': description,
+                'link': link
+            })
+
+        return repo_details
+
+    except requests.exceptions.RequestException as e:
+        print(f"Error fetching repositories for {username}: {e}")
+        return None
+
+
+
+
+# username = 'AtharvaPawar456'
+# repos = get_github_repos(username)
+
+# if repos:
+#     print(f"Repositories for {username}:")
+#     for repo in repos:
+#         print(f"Title: {repo['title']}")
+#         print(f"Description: {repo['description']}")
+#         print(f"Link: {repo['link']}")
+#         print()  # Empty line for readability
+# else:
+#     print(f"No repositories found for {username}.")
+
+
 def updatecareerinfo(request):
     if request.method == 'POST':
         current_year = request.POST.get('current_year')
         dream_role = request.POST.get('dream_role')
         linkedin_link = request.POST.get('linkedin')
         github_link = request.POST.get('github')
+        # github_link = "https://github.com/AtharvaPawar456"
+        gitusername = github_link.split('/')[-1]
+
+        print("gitusername: \n\n", gitusername)
+        repos = get_github_repos(gitusername)
+        print("repos: \n\n", repos)
+
+        if repos:
+            # print(f"Repositories for {gitusername}:")
+            for repo in repos:
+                # print(f"Title: {repo['title']}")
+                # print(f"Description: {repo['description']}")
+                # print(f"Link: {repo['link']}")
+                # print()  # Empty line for readability
+                if not UserGitRepos.objects.filter(github_link=repo['link']).exists():
+                    git_info = UserGitRepos(
+                            user_name = request.user,
+
+                            title=repo['title'],
+                            description=repo['description'],
+                            github_link=repo['link'],
+                        )
+                    git_info.save()
         
         # Create a new CareerInfo object and save the form data
-        career_info = CareerInfo(
-            current_year=current_year,
-            dream_role=dream_role,
-            linkedin_link=linkedin_link,
-            github_link=github_link
-        )
-        career_info.save()
+        username = request.user
+        try:
+            career_info = CareerInfo.objects.get(user_name=username)
+            career_info.current_year = current_year
+            career_info.dream_role = dream_role
+            career_info.linkedin_link = linkedin_link
+            career_info.github_link = github_link
+            career_info.save()
+        except CareerInfo.DoesNotExist:
+            career_info = CareerInfo(
+                user_name=username,
+                current_year=current_year,
+                dream_role=dream_role,
+                linkedin_link=linkedin_link,
+                github_link=github_link
+            )
+            career_info.save()
         return render(request, 'profile/updateprofile.html')
     return render(request, 'profile/updateprofile.html')
+
+
+
+
+
+
+
+
+
+
+def filter_by_username(request, username):
+    # Filter by user_name and sort by timestamp (latest to oldest)
+    emails = NotificationData.objects.filter(user_name=username).order_by('-timestamp')
+    return render(request, 'filter_by_username.html', {'emails': emails, 'username': username})
+
+# def filter_by_emailid(request, emailid):
+#     # Filter by emailid and sort by timestamp (latest to oldest)
+#     emails = NotificationData.objects.filter(emailid=emailid).order_by('-timestamp')
+#     return render(request, 'filter_by_emailid.html', {'emails': emails, 'emailid': emailid})
+
+def notificationfav(request, notificationid):
+    if request.method == 'GET':
+        email = get_object_or_404(NotificationData, eid=notificationid)
+
+        if email.fav == "1":
+            email.fav = "0"
+        else:
+            email.fav = "1"
+        email.save()  # Save the changes to the database
+
+        return JsonResponse({'status': 'success', 'fav': email.fav})
+
+    return JsonResponse({'status': 'error', 'message': 'Invalid request method'}, status=400)
+
+    
+
+
+@login_required
+def notification(request, myfilter):
+    username = request.user
+
+    emails = NotificationData.objects.filter(user_name=username).order_by('-timestamp')
+
+    if not emails:
+        gotuserData = NotificationData.objects.create(
+                                    user_name=username,
+                                    emailid="pixel@gmail.com",
+                                    title="Welcome to PixelMap",
+                                    content="Welcome! We're thrilled to have you here. Dive in and explore the amazing opportunities awaiting you.",
+                                    )
+
+    # Apply filters
+    if emails:
+        if 'recent20' in myfilter:
+            emails = emails[:20]
+
+        if 'fav' in myfilter:
+            emails = emails.filter(fav='1')
+
+    else:
+        emails = "no emails"
+
+    emailsContent = ""
+
+    if "_" in myfilter:
+        emailindex = myfilter.split('_')
+
+        if len(emailindex) > 1:
+            eid = emailindex[-1]
+
+            emailsContent = NotificationData.objects.get(eid=eid)
+            if emailsContent:
+                email_ = get_object_or_404(NotificationData, eid = eid)
+
+                if email_.seen == "0":
+                    email_.seen = "1"
+                    email_.save()
+                
+        
+        else:
+            emailsContent = "None"
+
+
+    return render(request, 'profile/notification.html', {'emails': emails, 'username': username, 'emailsContent' : emailsContent})
+
+
+
+@login_required
+def myproject(request):
+    username = request.user
+
+    myrepos = UserGitRepos.objects.filter(user_name=username)
+
+    
+    if not myrepos:
+        myrepos = 'none'
+
+    print("myrepos : ", myrepos)
+
+    return render(request, 'profile/myprojectsview.html', {'myrepos': myrepos, 'username': username})
+    
+
+
+
+@login_required
+def mycourses(request, myfilter):
+    username = request.user
+
+    # if myfilter == 'all':
+
+
+    # myrepos = UserGitRepos.objects.filter(user_name=username)
+
+    
+    # if not myrepos:
+    #     myrepos = 'none'
+
+    # print("myrepos : ", myrepos)
+
+    return render(request, 'profile/mycourses.html', {'myrepos': "myrepos", 'username': username})
+    
+

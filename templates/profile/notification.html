@@ -1,0 +1,117 @@
+
+{% extends 'base.html' %}
+
+
+{% block cssstyle %}
+<style>
+    /* Custom styles */
+    .scrollable {
+       height: 520px; /* Adjust as needed */
+       overflow-y: auto;
+   }
+</style>
+{% endblock cssstyle %}
+
+{% block content %}
+
+<h1 class="ps-4 pt-4" >Notification</h1>
+<div class="row p-4">
+
+    
+    <!-- Body -->
+    <section class=" m-1 rounded px-4 py-2 grid grid-cols-7 gap-4">
+    
+        <!-- Email List -->
+        <div class=" p-2 rounded scrollable col-span-2">
+
+
+            <div class="p-1 my-1 py-6 px-auto mb-10">
+                <a href="/notification/all" class="py-2 px-6 rounded-full bg-indigo-100 my-4">All</a>
+                <a href="/notification/recent20" class="py-2 px-6 rounded-full bg-indigo-100 my-4">Recent 20</a>
+                <a href="/notification/fav" class="py-2 px-6 rounded-full bg-indigo-100 my-4">Fav</a>
+            </div>
+
+            <div class="p-2"></div>
+            
+            {% if emails != "no emails" %}
+            {% for email in emails %}
+            
+                    <a href="/notification/all_{{ email.eid }}" class="">
+                        <div class="p-1 px-2 border rounded-sm my-1 shadow-md {% if email.seen == '0' %}bg-indigo-100{% endif %}">
+                            <div class="text-md font-bold">{{ email.title |truncatewords:4 }}</div>
+                            <div class="text-sm">{{ email.content |truncatewords:8 }}</div>
+                            <div class="text-sm text-gray-400">{{ email.emailid }}</div>
+                            <div class="text-xs text-right">{{ email.timestamp }}</div>
+                            <!-- <div class="text-sm">{{ email.eid }}</div> -->
+                        </div>
+                    </a>
+
+                {% endfor %}
+            {% endif %}
+
+
+        </div>
+    
+        <!-- Email View Content Panel -->
+        <div class="col-span-5 border border-gray-400 p-2 rounded scrollable shadow-md">
+            {% if emailsContent and emailsContent != "None" %}
+
+                <div class="mb-4 text-2xl font-bold">{{ emailsContent.title }}</div>
+
+                <button onclick="toggleFavorite({{ emailsContent.eid }})" class=" my-1 px-2 py-1 border rounded-full hover:bg-yellow-100">Make as Fav</button>
+
+
+                <div class="border p-1 rounded bg-indigo-100 mb-4">From : {{ emailsContent.title }}</div>
+                <div>{{ emailsContent.content | safe }}
+                </div>
+
+                <script>
+                    function toggleFavorite(notificationId) {
+                        fetch(`/notificationfav/${notificationId}`, {
+                            method: 'GET',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            }
+                        })
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.status === 'success') {
+                                // Find the button using the notificationId
+                                const button = document.getElementById(`fav-btn-${notificationId}`);
+                                if (data.fav === '1') {
+                                    button.textContent = 'Unmark as Fav';
+                                    button.classList.add('bg-yellow-100');
+                                } else {
+                                    button.textContent = 'Mark as Fav';
+                                    button.classList.remove('bg-yellow-100');
+                                }
+                            } else {
+                                console.error('Failed to update favorite status');
+                            }
+                        })
+                        .catch(error => console.error('Error:', error));
+                    }
+                </script>
+
+            {% else %}
+
+                <div class="text-center font-bold text-xl py-40">Select Notification</div>
+
+            {% endif %}
+
+        </div>
+
+      
+    </section>
+    
+
+
+
+
+
+
+
+
+</div>
+{% endblock content %}
+

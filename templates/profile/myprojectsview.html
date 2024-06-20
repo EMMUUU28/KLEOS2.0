@@ -1,0 +1,30 @@
+
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+<h1 class="p-4" >My Projects</h1>
+
+
+<div class="grid grid-cols-4 gap-4 mx-10 mb-10">
+
+  {% for repo in myrepos %}
+
+  
+  <a href="{{ repo.github_link }}" target="_blank" class="border border-2 rounded-md shadow-md p-2">
+    <div >
+      <div class="text-center font-bold text-md mb-2 p-1 bg-indigo-100 rounded-md">{{ repo.title }}</div>
+      <div class="text-xs text-justify">{{ repo.description }}</div>
+    </div>
+  </a>
+    
+  {% endfor %}
+
+</div>
+
+
+
+
+{% endblock content %}
+

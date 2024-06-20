@@ -1,0 +1,183 @@
+
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+<h1 class="p-4" >My Projects</h1>
+
+
+<div class="mx-10 mb-10">
+
+<!-- Search Courses -->
+ <div class="mb-2 text-xl ">Avalilabe Courses...</div>
+ <div class="grid grid-cols-6 gap-4">
+    <div class="p-2 border border-2 rounded-md shadow-md py-4">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Python-logo-notext.svg/640px-Python-logo-notext.svg.png" alt="img" class="h-20 mx-auto">
+        <div class="text-center font-bold text-xl mt-2">Python</div>
+    </div>
+ </div>
+
+
+ <!-- User Courses -->
+ <div class="mb-2 text-xl mt-10 font-bold">My Courses...</div>
+ <div class="grid grid-cols-6 gap-4">
+    <div class="p-2 border border-2 rounded-md shadow-md py-4">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Python-logo-notext.svg/640px-Python-logo-notext.svg.png" alt="img" class="h-20 mx-auto">
+        <div class="text-center font-bold text-xl mt-2">Python</div>
+    </div>
+ </div>
+
+
+<div class="hidden">
+
+    <!-- Navbar -->
+    <div class="text-2xl text-center m-1 font-mono py-2 rounded border border-black mb-2 shadow-sm shadow-yellow-600">Course : <b>Angular</b> 
+        <i class="p-2 rounded-full text-white bg-yellow-500 text-sm font-bold">inProgress</i> 
+        <!-- <i class="p-2 rounded-full text-white bg-green-700 text-sm font-bold">Completed</i>  -->
+    </div>
+
+<!-- Body -->
+<section class="border border-black m-1 rounded px-4 py-2 grid grid-cols-7 gap-4">
+
+    <!-- Email List -->
+    <div class="border border-gray-400 p-2 rounded scrollable col-span-2">
+        <div class="p-1 border rounded-sm my-1 grid grid-cols-7">
+            <div class="text-md col-span-6">1. Welcome to Angular...</div>
+            <div class="text-md text-white border bg-green-700 rounded-full text-center font-bold">✓</div>
+        </div>
+        <div class="p-1 border rounded-sm my-1 grid grid-cols-7">
+            <div class="text-md col-span-6">2. Welcome to Angular...</div>
+            <div class="text-md text-white border bg-green-700 rounded-full text-center font-bold">✓</div>
+        </div>
+        <div class="p-1 border rounded-sm my-1 grid grid-cols-7">
+            <div class="text-md col-span-6">3. Welcome to Angular...</div>
+            <div class="text-md text-white border bg-green-700 rounded-full text-center font-bold">✓</div>
+        </div>
+        <div class="p-1 border rounded-sm my-1 grid grid-cols-7">
+            <div class="text-md col-span-6">4. Welcome to Angular...</div>
+            <div class="text-md text-white border bg-red-700 rounded-full text-center font-bold">X</div>
+        </div>
+
+
+        <div class="mt-10 pl-2 p-1 border rounded-full my-1 grid grid-cols-7 bg-yellow-200">
+            <div class="text-md col-span-6 font-bold">Quiz Exam</div>
+            <div class="text-md text-white border bg-red-700 rounded-full text-center font-bold">X</div>
+        </div>
+
+        <div class="mt-10 pl-2 p-1 border rounded-full my-1 grid grid-cols-7 gap-1 bg-yellow-200">
+            <div class="text-md col-span-4 font-bold">See Certificate</div>
+            <!-- <div class="text-md text-white border bg-red-700 rounded-full text-center font-bold">X</div> -->
+            <div class="text-md text-white border bg-green-700 rounded-full text-center font-bold">✓</div>
+
+
+            <div class="col-span-2 text-md text-white border bg-indigo-700 rounded-full text-center font-bold">
+                Share <i class="fa-solid fa-share ml-2"></i>
+            </div>
+        </div>
+
+
+
+    </div>
+
+    <!-- View Content Panel -->
+    <div class="col-span-5 border border-gray-400 p-2 rounded scrollable">
+
+        <!-- Learn content -->
+        <section class="">
+
+            <div class="mb-4 text-2xl font-bold text-center">Intro to Angular</div>
+            
+            <div class="mb-10">
+                <video width="640" height="360" class="mx-auto p-2 border border-2 rounded-md shadow-xl" controls>
+                    <source src="sampleVideo.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+            
+            <div>Content ...<br>
+                {markdown content}
+            </div>
+
+
+            <div class="p-2 border-2 rounded-xl bg-green-700 text-white ml-auto max-w-max">
+                Completed ➜
+            </div>
+        </section>
+
+        <!-- Exam -->
+        <section class="hidden">
+            <div class="mb-4 text-2xl font-bold text-center">Exam Quiz : Angular</div>
+
+            <!-- Q&options -->
+            <div>
+                <div>Question 1</div>
+
+                <!-- Question -->
+                <div class="p-2 border rounded-md bg-yellow-200 my-4 font-bold">What is Angular?</div>
+
+                <!-- Options -->
+                <div class="grid grid-cols-2 gap-2">
+                    <!-- <div class="p-2 border rounded-md hover:bg-indigo-200 hover:shadow-md">A JavaScript framework</div> -->
+                    <div class="p-2 border rounded-md bg-green-400">A JavaScript framework</div>
+                    
+                    <div class="p-2 border rounded-md hover:bg-indigo-200 hover:shadow-md">A CSS framework</div>
+                    <div class="p-2 border rounded-md hover:bg-indigo-200 hover:shadow-md">A programming language</div>
+                    <div class="p-2 border rounded-md hover:bg-indigo-200 hover:shadow-md">A database management system</div>
+                </div>
+            </div>
+
+            <!-- select question -->
+            <div class="grid grid-cols-10 gap-2 mt-20">
+                <div class="border rounded-md p-2 text-center font-bold hover:bg-indigo-200 border-gray-400">1</div>
+                <div class="border rounded-md p-2 text-center font-bold hover:bg-indigo-200 border-gray-400">1</div>
+                <div class="border rounded-md p-2 text-center font-bold hover:bg-indigo-200 border-gray-400">1</div>
+                <div class="border rounded-md p-2 text-center font-bold hover:bg-indigo-200 border-gray-400">1</div>
+                <div class="border rounded-md p-2 text-center font-bold hover:bg-indigo-200 border-gray-400">1</div>
+                <div class="border rounded-md p-2 text-center font-bold hover:bg-indigo-200 border-gray-400">1</div>
+                <div class="border rounded-md p-2 text-center font-bold hover:bg-indigo-200 border-gray-400">1</div>
+                <div class="border rounded-md p-2 text-center font-bold hover:bg-indigo-200 border-gray-400">1</div>
+                <div class="border rounded-md p-2 text-center font-bold hover:bg-indigo-200 border-gray-400">1</div>
+                <div class="border rounded-md p-2 text-center font-bold hover:bg-indigo-200 border-gray-400">1</div>
+                <div class="border rounded-md p-2 text-center font-bold hover:bg-indigo-200 border-gray-400">1</div>
+                <div class="border rounded-md p-2 text-center font-bold hover:bg-indigo-200 border-gray-400">1</div>
+                <div class="border rounded-md p-2 text-center font-bold hover:bg-indigo-200 border-gray-400">1</div>
+                <div class="border rounded-md p-2 text-center font-bold hover:bg-indigo-200 border-gray-400">1</div>
+                <div class="border rounded-md p-2 text-center font-bold hover:bg-indigo-200 border-gray-400">1</div>
+                <div class="border rounded-md p-2 text-center font-bold hover:bg-indigo-200 border-gray-400">1</div>
+                <div class="border rounded-md p-2 text-center font-bold hover:bg-indigo-200 border-gray-400">1</div>
+                <div class="border rounded-md p-2 text-center font-bold hover:bg-indigo-200 border-gray-400">1</div>
+                <div class="border rounded-md p-2 text-center font-bold hover:bg-indigo-200 border-gray-400">1</div>
+            </div>
+
+            <div class="mx-auto text-center border w-20 mt-6 p-2 rounded-md border-2 bg-green-300 border-gray-400 font-bold hover:bg-green-700 hover:text-white">
+                Submit
+            </div>
+            
+
+        </section>
+
+        <!-- Certificate Section -->
+        <section class="text-center hidden">
+            <h1 class="text-3xl font-bold mb-4">Angular Certificate for Atharva Pawar</h1>
+            <img src="certificates/generated_certificate.png" class="h-80 mx-auto mb-4 border border-2 p-1 rounded-md shadow-xl" alt="Generated Certificate">
+
+            <!-- Download Button -->
+            <a href="certificates/generated_certificate.png" download="generated_certificate.png" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                Download Certificate
+            </a>
+            
+        </section>
+
+    </div>
+</section>
+</div>
+
+
+</div>
+
+
+
+
+{% endblock content %}
+
