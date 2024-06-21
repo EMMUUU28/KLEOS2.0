@@ -7,10 +7,12 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     # path("resume/", views.talkpdf, name="talkpdf"),
-    path('roadmap/',views.roadmap,name='roadmap'),
-    path('downloadroadmap/',views.downloadroadmap,name='downloadroadmap'),
-    path('resumeassistant/', views.resumeassistant, name='resumeassistant'),
-    path('studyplan/', views.studyplan, name='studyplan'),
+
+
+    # path('roadmap/',views.roadmap,name='roadmap'),
+    # path('downloadroadmap/',views.downloadroadmap,name='downloadroadmap'),
+    # path('resumeassistant/', views.resumeassistant, name='resumeassistant'),
+    # path('studyplan/', views.studyplan, name='studyplan'),
 
     # path("ar", ar, name="ar"),
 

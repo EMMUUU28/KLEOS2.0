@@ -15,5 +15,11 @@ urlpatterns = [
     path("calendar/",views.calendar,name='calendar'),
 
     path("updateprofile_resume/",views.updateprofile_resume,name='updateprofile_resume'),
-    path("updatecareerinfo/",views.updatecareerinfo,name='updatecareerinfo')
+    path("updatecareerinfo/",views.updatecareerinfo,name='updatecareerinfo'),
+
+    path("notification/<str:myfilter>/",views.notification,name='notification'),
+    path("notificationfav/<str:notificationid>/",views.notificationfav,name='notificationfav'),
+    path("myproject/",views.myproject,name='myproject'),
+    path("mycourses/<str:myfilter>/",views.mycourses,name='mycourses'),
+
 ]

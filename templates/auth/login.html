@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% block title %}Sign in{% endblock %}
+{% block title %}PixelMap . Sign in{% endblock %}
 {% block content %}
   
     <div class=" container w-50 p-4">
@@ -57,23 +57,25 @@
                   </g>
                 </svg>
               </span>
-              <span class="app-brand-text demo text-body fw-bold">StudyLab</span>
+              <span class="app-brand-text demo text-body fw-bold">PixelMap</span>
             </a>
           </div>
           <!-- /Logo -->
           <p></p>
-          <h4 class="mb-2">Welcome to StudyLab!</h4>
+          <h4 class="mb-2">Welcome to PixelMap!</h4>
           <p class="mb-4">Please sign-in to your account and start the adventure</p>
 
-          <form id="formAuthentication" class="mb-3" action="index.html">
+          <form id="formAuthentication" class="mb-3" method="POST" action="{% url 'login' %}">
+          {% csrf_token %}
+
             <div class="mb-3">
-              <label for="email" class="form-label">Email or Username</label>
+              <label for="username" class="form-label">Username</label>
               <input
                 type="text"
                 class="form-control"
-                id="email"
-                name="email-username"
-                placeholder="Enter your email or username"
+                id="username"
+                name="username"
+                placeholder="Enter your username"
                 autofocus />
             </div>
             <div class="mb-3 form-password-toggle">
@@ -98,8 +100,8 @@
             <div class=" pb-2">
                 <button class="btn btn-primary d-grid w-100" type="submit">Sign in</button>  
             </div>
-
           </form>
+
           <a href="{% url 'social:begin' 'google-oauth2' %}"><button class="btn btn-primary mb-2 w-100">Login With Google</button></a>
 
 

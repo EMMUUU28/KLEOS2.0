@@ -61,9 +61,11 @@
       </div>
       <!-- /Logo -->
       <p></p>
-      <h4 class="mb-2">Adventure starts here 🚀</h4>
+      <h4 class="my-2 text-center text-xl">Adventure starts here 🚀</h4>
 
-      <form id="formAuthentication" class="mb-3" action="index.html">
+      <form id="formAuthentication" class="mb-3" method="POST" action="{% url 'signup' %}">
+        {% csrf_token %}
+
         <div class="mb-3">
           <label for="username" class="form-label">Username</label>
           <input
@@ -92,7 +94,7 @@
           </div>
         </div>
 
-        <div class="mb-3">
+        <div class="mb-3 hidden">
           <div class="form-check">
             <input class="form-check-input" type="checkbox" id="terms-conditions" name="terms" />
             <label class="form-check-label" for="terms-conditions">
@@ -101,7 +103,8 @@
             </label>
           </div>
         </div>
-        <button class="btn btn-primary d-grid w-100">Sign up</button>
+
+        <button type="submit" class="btn btn-primary d-grid w-100">Sign up</button>
       </form>
 
       <p class="text-center">
