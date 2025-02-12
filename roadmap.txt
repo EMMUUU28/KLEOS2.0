@@ -1,0 +1,72 @@
+Geology.
+    
+# ---- Introduction to Geology
+            ------> Definition and Scope
+            ------> Branches of Geology
+            ------> Importance of Geology
+    
+# ---- Mineralogy
+            ------> Mineral Properties
+                              --------> Physical Properties
+                              --------> Chemical Properties
+            ------> Mineral Identification
+            ------> Crystallography
+    
+# ---- Petrology
+            ------> Igneous Rocks
+                              --------> Formation
+                              --------> Classification
+            ------> Sedimentary Rocks
+                              --------> Formation
+                              --------> Classification
+            ------> Metamorphic Rocks
+                              --------> Formation
+                              --------> Classification
+    
+# ---- Structural Geology
+            ------> Rock Deformation
+                              --------> Folding
+                              --------> Faulting
+            ------> Geological Maps
+    
+# ---- Paleontology
+            ------> Fossilization Process
+            ------> Types of Fossils
+            ------> Evolutionary Biology
+    
+# ---- Geophysics
+            ------> Seismology
+                              --------> Earthquakes
+                              --------> Seismic Waves
+            ------> Magnetism
+            ------> Gravimetry
+    
+# ---- Hydrogeology
+            ------> Water Cycle
+            ------> Groundwater Flow
+            ------> Aquifer Properties
+    
+# ---- Environmental Geology
+            ------> Natural Hazards
+                              --------> Earthquakes
+                              --------> Volcanoes
+                              --------> Landslides
+            ------> Pollution
+                              --------> Water Pollution
+                              --------> Soil Pollution
+                              --------> Air Pollution
+    
+# ---- Economic Geology
+            ------> Ore Deposits
+            ------> Mining Techniques
+            ------> Resource Management
+    
+# ---- Field Methods
+            ------> Geological Mapping
+            ------> Sampling Techniques
+            ------> Geophysical Surveys
+    
+# ---- Research and Careers
+            ------> Academic Research
+            ------> Industry Careers
+            ------> Government and Policy

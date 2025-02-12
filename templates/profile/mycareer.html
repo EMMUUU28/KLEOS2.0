@@ -1,0 +1,145 @@
+{% extends 'base.html' %}
+
+{% block cssstyle %}
+<style>
+    /* Additional Custom Styles for elements without direct Bootstrap equivalents */
+    .main-timeline-5::after {
+        content: "";
+        position: absolute;
+        width: 3px;
+        background-color: #3cbde8;
+        top: 0;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .timeline-5::after {
+        content: "";
+        position: absolute;
+        width: 17px;
+        height: 17px;
+        background-color: #3452da;
+        border-radius: 50%;
+        top: 18px;
+        right: -8px; /* Adjust as needed */
+        z-index: 1;
+    }
+
+    .right-5::before {
+        content: " ";
+        position: absolute;
+        top: 18px;
+        left: 30px;
+        border: medium solid #23b9df;
+        border-width: 10px 10px 10px 0;
+        border-color: transparent #fff transparent transparent;
+    }
+</style>
+{% endblock cssstyle %}
+
+{% block content %}
+<h1 class="p-4">My Career</h1>
+
+<div class="container my-5">
+    {% if filter == 'all' %}
+    <form id="formAuthentication" class="mb-3" method="POST" action="{% url 'mycareer' myfilter='all' %}">
+        {% csrf_token %}
+        <div class="row g-3">
+            <div class="col-md-9">
+                <input type="text" class="form-control" id="entercareer" name="entercareer" placeholder="Enter your desire career..." autofocus>
+            </div>
+            <div class="col-md-3">
+                <button class="btn btn-primary w-100" type="submit">Submit</button>
+            </div>
+        </div>
+    </form>
+    {% endif %}
+
+    {% if filter == "all" %}
+    <div class="mb-2 fs-5">My Career Options...</div>
+    <div class="row g-4">
+        {% for career in mycareer %}
+        <a href="/mycareer/{{ career.careername }}/" class="col-md-3">
+            <div class="p-4 py-5 border bg-light rounded-3 text-center h-100">
+                <div class="fw-bold text-lg">{{ career.careername }}</div>
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+
+    {% elif filter == 'subtask' %}
+
+        <div class="text-center fs-1 fw-bold mb-5">{{mycareer.0.careername}}</div>
+        <div class="mb-4">{{ mycareer.0.content | safe }} </div>
+        <a href="/mycareerdone/{{mycareer.0.slug}}" class="btn btn-success">Completed & Next</a>
+    {% else %}
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Display the course name/title -->
+<div class="text-center">
+    <h3 class="fw-bold my-5">{{ course }}</h3>
+</div>
+
+<section>
+    <div class="container py-5">
+        <!-- Main timeline -->
+        <div class="position-relative" style="max-width: 50%; margin: 0 auto;">
+            <!-- Vertical line in the timeline -->
+            <div style="position: absolute; width: 2px; background-color: #3cbde8; top: 0; bottom: 0; left: 50%;"></div>
+
+            {% for topic, records in mycareer.items %}
+            <!-- Topic card -->
+            <div class="position-relative mb-4" style="padding-left: 40px;">
+                <div class="card">
+                    <div class="card-body bg-light border border-4 rounded border-secondary">
+                        <h5 class="fs-5 fw-bold">{{ topic }}</h5>
+                        <p>{{ topic.content | safe }}</p>
+                    </div>
+                </div>
+                <!-- Circle on the timeline -->
+                <div style="position: absolute; width: 17px; height: 17px; background-color: #3452da; border-radius: 50%; top: 15px; left: -8.5px;"></div>
+            </div>
+
+            {% for record in records %}
+            <!-- Subtopic cards -->
+            <div class="position-relative mb-4" style="padding-left: 40px;">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="fs-5 fw-bold mb-2">
+                            {% if record.done == "1" %}
+                            <i class="bi bi-check-circle-fill text-success me-3"></i>
+                            <i class="fa-solid fa-square-check text-success"></i>
+                            {% else %}
+                            <i class="fa-solid fa-circle-xmark text-danger"></i>
+                            {% endif %}
+                            {{ record.subtopic }}
+                        </h5>
+                        <div class="text-muted">
+                            <i class="bi bi-calendar3 me-2"></i>{{ record.date }}
+                            <i class="bi bi-clock me-2 ms-4"></i>{{ record.duration }}
+                        </div>
+                        <a href="/mycareerview/{{ record.slug }}" class="btn btn-primary mt-3">Learn Now</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+
+    {% endif %}
+</div>
+{% endblock content %}

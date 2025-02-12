@@ -1,0 +1,118 @@
+{% extends 'base.html' %}
+{% block cssstyle %}{% endblock cssstyle %}
+{% block content %}
+
+
+<h1 class="p-4">My Career RoadMap</h1>
+
+<div class="container my-5">
+    {% if filter == 'all' %}
+    <form id="formAuthentication" class="mb-3" method="POST" action="{% url 'careersearch' myslug='all' %}">
+        {% csrf_token %}
+        <div class="row g-3">
+            <div class="col-md-9">
+                <input type="text" class="form-control" id="entercareer" name="entercareer" placeholder="Enter your desire career..." autofocus>
+            </div>
+            <div class="col-md-3">
+                <button class="btn btn-primary w-100" type="submit">Submit</button>
+            </div>
+        </div>
+    </form>
+    {% endif %}
+
+    {% if filter == "all" %}
+    <div class="mb-2 fs-5">My Career Roadmaps...</div>
+    <div class="row g-4">
+        {% for career in allcareerssearch %}
+        <a href="/careersearch/{{ career.careername }}/" class="col-md-3">
+            <div class="p-4 py-5 border bg-light rounded-3 text-center h-100">
+                <div class="fw-bold text-lg">{{ career.careername }}</div>
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+    {% else %}
+
+        <div class="text-center text-3xl font-bold mb-4">{{ mycareer.careername }}</div>
+        
+        
+        <div class="text-md font-bold mb-4">Required Skills</div>
+        <div class="grid grid-cols-5 gap-4">
+            {% for item in skill_list %}
+                <div class="border p-2 border-gray-600 rounded-md text-center bg-indigo-100 text-black">{{ item }}</div>
+            {% endfor %}
+        </div>
+
+        <img src="{{ mycareer.roadmapURL }}" alt="roadMap" class="my-4 mx-auto">
+        <div class="my-4 border border-2 rounded-md shadow-xl p-4">
+            <div class="text-xl font-bold mb-2">Summary</div>
+            <div>{{ mycareer.summary | safe}}</div>
+        </div>
+
+        {% for item in contentdata %}
+        <div class="grid grid-cols-2 gap-4 p-4 border rounded-md shadow-md shadow-indigo-200 mb-6">
+            <div>
+                <img src="{{ item.thumbnail }}" class="h-full" alt="Thumbnail">
+            </div>
+            <div>
+                <div class="text-2xl font-bold mb-4">{{ item.title }}</div>
+                <p><strong>Link:</strong> <a href="{{ item.link }}">{{ item.link }}</a></p>
+                <p class="my-2"><a href="{{ item.channel.link }}"
+                    class="font-bold text-indigo-600 border border-2 border-indigo-400 rounded-full p-2 w-auto"
+                    >Channel: {{ item.channel.name }}</a></p>
+                <p><strong>Video Count:</strong> {{ item.video_count }}</p>
+
+                <div class="border rounded-md p-2 mt-2 bg-indigo-100">
+                    <div class="text-2xl text-center">Videos:</div>
+                    <ul>
+                        {% for video in item.videos %}
+                        <li>
+                            <p><strong>Title:</strong> <a href="{{ video.link }}">{{ video.title }}</a></p>
+                            <p><strong>Length:</strong> {{ video.length }}</p>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+
+
+        <!-- Job Data -->
+        <div class="text-3xl font-bold mb-4 mt-10 text-indigo-600">Job Openings</div>
+
+        <div>
+            {% for jobdata in mainjobcontent %}
+            <div class="p-2 border rounded-md my-4 shadow shadow-indigo-300">
+                <p class="text-2xl mb-4 font-bold"><strong>Job Title:</strong> <a href="{{ jobdata.link }}">{{ jobdata.title }}</a></p>
+                <p><strong>Company Name:</strong> {{ jobdata.company_name }}</p>
+                <p><strong>Location:</strong> {{ jobdata.location }}</p>
+                <p><strong>via:</strong> {{ jobdata.via }}</p>
+                <p class="mb-4"><strong>Description:</strong> {{ jobdata.description }}</p>
+                <p><strong class="p-1 border rounded-md bg-indigo-100 px-2 mb-2">Job Highlights:</strong>
+                    {% for jobdatalinksitem in jobdata.job_highlights %}
+                        <div class="font-bold pl-4">{{ jobdatalinksitem.title }}</div>
+                        {% for jobdatalinks_item in jobdatalinksitem.items %}
+                            <div class="font-bold pl-10">- {{ jobdatalinks_item }}</div>
+                        {% endfor %}
+                    {% endfor %}
+                </p>
+                <!-- <p><strong>Related_links:</strong> {{ jobdata.related_links }}</p> -->
+                {% for jobdatalinksitem in jobdata.related_links %}
+                    <a href="{{ jobdatalinksitem.link }}" target="_blank" class="font-bold text-indigo-500">
+                        <i class="fa-solid fa-arrow-up-right-from-square mr-2 mt-2"></i>Link : {{ jobdatalinksitem.text }}</a><br>
+                {% endfor %}
+
+            </div>
+            {% endfor %}
+        </div>
+    
+    
+    {% endif %}
+
+
+    
+
+
+</div>
+{% endblock content %}

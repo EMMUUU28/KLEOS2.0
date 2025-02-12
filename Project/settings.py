@@ -29,6 +29,8 @@ SECRET_KEY = 'django-insecure-9mihmye4b*$w4^qv(h!0hf(8ym6s6kvofv=$_@d++9pw8qs5s2
 DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
+# CSRF_TRUSTED_ORIGINS = ['https://364e-202-149-199-26.ngrok-free.app']
+CSRF_TRUSTED_ORIGINS = ['https://0561-202-149-199-26.ngrok-free.app']
 
 
 # Application definition
@@ -143,6 +145,10 @@ STATICFILES_DIRS = [
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 MEDIA_ROOT = BASE_DIR / 'media'
 MEDIA_URL = '/media/'
+
+
+STATIC_MEDIA_URL = '/static/'
+STATIC_MEDIA_ROOT = os.path.join(BASE_DIR, 'static')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field

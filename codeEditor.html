@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+
+    <style>
+         /* Custom styles */
+         .scrollable {
+            height: 500px; /* Adjust as needed */
+            overflow-y: auto;
+        }
+    </style>
+    <title>Email Page</title>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <div class="text-2xl text-center m-1 font-mono py-2 rounded border border-black mb-2 shadow-sm shadow-yellow-600 font-bold">PixelMap - Python Code Editor</div>
+
+    <!-- Body -->
+    <section class="border border-black m-1 rounded px-4 py-2">
+        <div class="grid grid-rows-3 grid-flow-col gap-4">
+            <!-- Code Editor -->
+            <div class="row-span-3 col-span-3 border p-2">
+                <textarea id="code" class="w-full h-full bg-gray-100 border border-gray-300 rounded-md resize-none p-2" placeholder="this is your code editor..."></textarea>
+            </div>
+
+            <!-- Input Area -->
+            <div class="col-span-2 border p-2">
+                <label for="input" class="block mb-2 font-bold">Input:</label>
+                <textarea id="input" class="w-full h-20 bg-gray-100 border border-gray-300 rounded-md resize-none p-2" placeholder="enter input..."></textarea>
+            </div>
+
+            <!-- Output Area -->
+            <div class="row-span-2 col-span-2 border p-2">
+                <label for="output" class="block mb-2 font-bold">Output:</label>
+                <textarea id="output" class="w-full h-40 bg-gray-100 border border-gray-300 rounded-md resize-none p-2" placeholder="code output..." readonly></textarea>
+
+                <!-- Run Button -->
+                <button id="runButton" class="w-full text-center font-bold py-10 border col-span-1 mt-14 rounded-md bg-green-500 hover:bg-green-600 text-white">RUN</button>
+            </div>
+        </div>
+
+
+    </section>
+
+</body>
+</html>

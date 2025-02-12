@@ -81,10 +81,7 @@ class UserCourses(models.Model):
     def __str__(self):
         return f"{self.usercourseid} - {self.user_name} - coursename: {self.coursename} - title: {self.title} - seen: {self.seen}"
 
-
-
-
-class NotificationData(models.Model):
+class NotificationData(models.Model):   
     eid         = models.AutoField(primary_key=True)
     user_name   = models.CharField(max_length=50)
 
@@ -104,3 +101,115 @@ class NotificationData(models.Model):
 
 
     # YYYY-MM-DD : 2025-07-10
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+class MyRecCareer(models.Model):
+    id              = models.AutoField(primary_key=True)
+    user_name       = models.CharField(max_length=50)
+
+    careername       = models.TextField(default='none')    # markdown content
+    description     = models.TextField(default='none')    # markdown content
+    duration    = models.CharField(max_length=100, default='none')
+
+    def __str__(self):
+        return f"{self.id} - {self.user_name} - coursename: {self.careername} - description: {self.description}"
+
+class MyCareerDisplay(models.Model):
+    id              = models.AutoField(primary_key=True)
+    user_name       = models.CharField(max_length=50)
+    careername      = models.CharField(max_length=1000, default='none')
+    done            = models.CharField(max_length=2, default='0') # 0 = unseen or 1 = seen 
+
+    def __str__(self):
+        return f"{self.id} - {self.user_name} - coursename: {self.careername} - done: {self.done}"
+
+
+class MyCareerDetailed(models.Model):
+    id    = models.AutoField(primary_key=True)
+    user_name   = models.CharField(max_length=50)
+    careername  = models.CharField(max_length=1000, default='none')
+
+    topic       = models.TextField(default='none')    # markdown content
+    content     = models.TextField(default='none')    # markdown content
+    duration    = models.CharField(max_length=100, default='none')
+    date        = models.CharField(max_length=100, default='none')
+    slug        = models.CharField(max_length=100, default='none')
+
+    done        = models.CharField(max_length=2, default='0') # 0 = unseen or 1 = seen 
+
+    def __str__(self):
+        return f"{self.id} - {self.user_name} - coursename: {self.careername} - done: {self.done}"
+
+
+class MyCareerTaskDetailed(models.Model):
+    id          = models.AutoField(primary_key=True)
+    user_name   = models.CharField(max_length=50)
+    careername  = models.CharField(max_length=1000, default='none')
+
+    topic       = models.TextField(default='none')    # markdown content
+    subtopic    = models.TextField(default='none')    # markdown content
+    content     = models.TextField(default='none')    # markdown content
+    duration    = models.CharField(max_length=100, default='none')
+    date        = models.CharField(max_length=100, default='none')
+    slug        = models.CharField(max_length=100, default='none')
+
+    done        = models.CharField(max_length=2, default='0') # 0 = unseen or 1 = seen 
+
+    def __str__(self):
+        return f"{self.id} - {self.user_name} - coursename: {self.careername} - topic: {self.topic} - subtopic: {self.subtopic} - {self.duration} - done: {self.done}"
+
+
+
+class CraeerSearch(models.Model):
+    id          = models.AutoField(primary_key=True)
+    user_name   = models.CharField(max_length=50)
+    careername  = models.CharField(max_length=1000, default='none')
+
+    skills      = models.TextField(default='none')    # markdown content
+    roadmapURL  = models.TextField(default='none')    # markdown content
+    content     = models.TextField(default='none')    # markdown content
+    jobcontent  = models.TextField(default='none')    # markdown content
+    summary     = models.TextField(default='none')    # markdown content
+    
+    def __str__(self):
+        return f"{self.id} - {self.user_name} - coursename: {self.careername}"
+
+
+
+class QuizDetails(models.Model):
+    id          = models.AutoField(primary_key=True)
+    user_name   = models.CharField(max_length=50)
+    ytlink      = models.CharField(max_length=1000, default='none')
+    content         = models.TextField(default='none')    # markdown content
+
+    question        = models.TextField(default='none')    # markdown content
+    options         = models.TextField(default='none')    # list
+    correctanswer     = models.TextField(default='none')    # markdown content
+    useranswer     = models.TextField(default='none')    # markdown content
+    iscorrect     = models.TextField(default='0')    # markdown content
+    
+    def __str__(self):
+        return f"{self.id} - {self.user_name} : {self.question} - correctanswer: {self.correctanswer} {self.options}"
+
+
+
+
+

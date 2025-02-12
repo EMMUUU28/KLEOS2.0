@@ -22,4 +22,12 @@ urlpatterns = [
     path("myproject/",views.myproject,name='myproject'),
     path("mycourses/<str:myfilter>/",views.mycourses,name='mycourses'),
 
+    path("mycareer/<str:myfilter>/",views.mycareer,name='mycareer'),
+    path("mycareerview/<str:myslug>/",views.mycareerview,name='mycareerview'),
+    path("mycareerdone/<str:task_slug>/",views.mycareerdone,name='mycareerdone'),
+    
+    path("careersearch/<str:myslug>/",views.careersearch,name='careersearch'),
+
+    path("quiz/<str:myslug>/",views.quiz,name='quiz'),
+    path("quizdone/<str:myid>/<str:myoption>",views.quizdone,name='quizdone'),
 ]

@@ -1,0 +1,317 @@
+
+{% extends 'base.html' %}
+
+
+{% block cssstyle %}
+<style>
+    /* The actual timeline (the vertical ruler) */
+    .main-timeline-5 {
+        position: relative;
+        max-width: 50%;
+        margin: 0 auto;
+    }
+
+    /* The actual timeline (the vertical ruler) */
+    .main-timeline-5::after {
+        content: "";
+        position: absolute;
+        width: 3px;
+        background-color: #3cbde8;
+        top: 0;
+        bottom: 0;
+        left: auto;
+        margin-left: -3px;
+    }
+
+    /* Container around content */
+    .timeline-5 {
+        position: relative;
+        background-color: inherit;
+        width: 100%;
+    }
+
+    /* The circles on the timeline */
+    .timeline-5::after {
+        content: "";
+        position: absolute;
+        width: 17px;
+        height: 17px;
+        right: 1px;
+        background-color: #3452da;
+        top: 18px;
+        border-radius: 50%;
+        z-index: 1;
+    }
+
+    /* Place the container to the right */
+    .right-5 {
+        padding: 0px 0px 20px 40px;
+        left: auto;
+    }
+
+    /* Add arrows to the right container (pointing left) */
+    .right-5::before {
+        content: " ";
+        position: absolute;
+        top: 18px;
+        z-index: 1;
+        left: 30px;
+        border: medium solid #23b9df;
+        border-width: 10px 10px 10px 0;
+        border-color: transparent #fff transparent transparent;
+    }
+
+    /* Fix the circle for containers on the right side */
+    .right-5::after {
+        left: -10px;
+    }
+
+    @media (max-width: 991px) {
+        .main-timeline-5 {
+            max-width: 100%;
+        }
+    }
+
+    .gradient-custom-5 {
+        /* fallback for old browsers */
+
+        /* Chrome 10-25, Safari 5.1-6 */
+        background: -webkit-linear-gradient(
+          to right,
+          rgba(235, 187, 167, 1),
+          rgba(207, 199, 248, 1)
+        );
+
+        /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        background: linear-gradient(
+          to right,
+        );
+    }
+</style>
+{% endblock cssstyle %}
+
+{% block content %}
+
+<h1 class="p-4" >My Career</h1>
+
+<div class="container text-center">
+    <div class="row">
+      <div class="col">
+        Column
+      </div>
+      <div class="col">
+        Column
+      </div>
+      <div class="col">
+        Column
+      </div>
+    </div>
+  </div>
+
+
+<div class="mx-10 mb-10">
+<!-- {{filter}} -->
+{% if filter == 'all' %}
+<form id="formAuthentication" class="mb-3" method="POST" action="{% url 'mycareer' myfilter='all' %}">
+{% csrf_token %}
+
+    <div class="grid grid-cols-4 gap-2">
+        <div class="mb-3 col-span-3">
+            <input
+                type="text"
+                class="form-control inline"
+                id="entercareer"
+                name="entercareer"
+                placeholder="Enter your desire career..."
+                autofocus />
+        </div>
+        
+        <div class=" pb-2">
+            <button class="btn btn-primary d-grid w-100" type="submit">Submit</button>  
+        </div>
+    </div>
+</form>
+{% endif %}
+
+
+
+
+
+
+
+
+<!-- Search Courses -->
+
+    {% if filter == "all" %}
+    <div class="mb-2 text-xl ">My Career Options...</div>
+
+    <div class="grid grid-cols-4 gap-4 mx-10 mb-10">
+
+        {% for career in mycareer %}
+    
+        
+        <a href="/mycareer/{{ career.careername }}/" class=" bg-indigo-100 border border-2 rounded-md shadow-md py-16 px-6">
+            <div class="text-center font-bold text-xl mb-2 p-1 rounded-md font-bold">{{ career.careername }}</div>
+        </a>
+        {% endfor %}
+    </div>
+
+    {% elif filter == 'subtask' %}
+
+    <div class="text-3xl font-bold text-center mb-10">{{mycareer.0.careername}}</div>
+    
+    <div class="mb-4">{{ mycareer.0.content | safe }}</div>
+
+    <a href="/mycareerdone/{{mycareer.0.slug}}" 
+    class="bg-green-500 text-white hover:bg-green-900 border-2 my-1 px-2 py-3 border rounded-full hover:border-gray-600">
+    Completed & Next <i class="menu-icon tf-icons bx bx-right-arrow"></i></a>
+    
+    
+
+    {% else %}
+
+
+
+    <!-- {% for topic, records in mycareer.items %}
+    <h2>{{ topic }}</h2>
+    <ul>
+        {% for record in records %}
+            <li>
+                <strong>Subtopic:</strong> <br>
+                <strong>Content:</strong> {{ record.content |safe }}<br>
+                <strong>Duration:</strong> {{ record.duration }}<br>
+                <strong>Date:</strong> {{ record.date }}<br>
+                <strong>Slug:</strong> {{ record.slug }}<br>
+                <strong>Done:</strong> {{ record.done }}
+            </li>
+        {% endfor %}
+    </ul>
+    {% endfor %} -->
+
+
+    <!-- Timeline -->
+    <div class="text-3xl font-bold text-center">{{course}}</div>
+
+    <section class="gradient-custom-5">
+        <div class="container py-5">
+            <div class="main-timeline-5">
+
+            {% for topic, records in mycareer.items %}
+
+                <!-- Topic Card -->
+                <div class="timeline-5 right-5">
+                    <div class="card">
+                        <div class="card-body p-4 bg-indigo-100 border-4 rounded-md border-gray-500">
+                            <h5 class="text-xl font-semibold">{{ topic }}</h5>
+                            <p class="mt-2 mb-0">{{ topic.content | safe }}</p>
+                        </div>
+                    </div>
+                </div>
+
+                
+                {% for record in records %}
+                <!-- SubTopic Card -->
+                <div class="timeline-5 right-5">
+                    <div class="card">
+                        <div class="card-body p-4">
+                            <h5 class="text-xl font-semibold mb-2">
+                                {% if record.done == "1" %}
+                                    <i class="menu-icon tf-icons bx bx-message-square-check mr-4 bg-green-600 p-1 text-white rounded-md"></i>
+                                {% else %}
+                                    <i class="menu-icon tf-icons bx bx-message-alt-x mr-4 bg-red-600 p-1 text-white rounded-md"></i>
+                                {%endif%}
+                                {{ record.subtopic }}</h5>
+                            <span class="text-sm text-gray-500 mt-4">
+                                <i class="menu-icon tf-icons bx bx-calendar-week"></i>{{ record.date }}
+                                <i class="menu-icon tf-icons bx bx-timer ml-4"></i>{{ record.duration }}
+                            </span>
+                            <!-- <p class="mt-2">{{ record.content }}</p>     -->
+                            <br>
+                            <br>
+                            <a href="/mycareerview/{{ record.slug }}" 
+                            class="mt-2 p-2 border border-2 rounded-md hover:bg-indigo-600 hover:text-white">Learn Now</a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+
+            {% endfor %}
+
+
+
+            </div>
+        </div>
+    </section>
+
+    {% endif %}
+
+
+    <!-- Subtopic Content -->
+    <!-- <section>
+        <div class="text-4xl font-bold text-center mb-4">Topic</div>
+        <div class="text-md font-bold mb-4 px-4"></div>
+
+        <div class="bg-white p-6 rounded-lg shadow-lg">
+            <h1 class="text-2xl font-bold mb-4">Video title</h1>
+            <h1 class="text-md font-bold mb-4"><i class="menu-icon tf-icons bx bx-timer ml-4"></i>Duration</h1>
+            <div class="h-[550px] w-10/12 mx-auto p-1 border border-2 rounded-md shadow-md">
+                <iframe class="w-full h-full" src="https://www.youtube.com/embed/ZO-0DOp0xRs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </div>
+
+        <div class="py-4 border"></div>
+    </section> -->
+
+
+    {% if filter == 'all' %}
+    <div class="mb-2 text-xl mt-40">Career Recommender...</div>
+
+    <form id="formAuthentication" class="mb-3 mt-4" method="POST" action="{% url 'mycareer' myfilter='all' %}">
+    {% csrf_token %}
+    
+        <div class="grid grid-cols-4 gap-2">
+            <div class="mb-3 col-span-3">
+                <input
+                    type="text"
+                    class="form-control inline"
+                    id="_entercareer"
+                    name="entercareer"
+                    placeholder="Enter your desire career..."
+                    autofocus />
+            </div>
+            
+            <div class=" pb-2">
+                <button class="btn btn-primary d-grid w-100" type="submit">Submit</button>  
+            </div>
+        </div>
+    </form>
+    {% endif %}    
+
+    {% if filter == "all" and renderMyRecCareer != 'none' %}
+    <div class="mb-2 text-xl mx-10">My Career Options...</div>
+
+    <div class="grid grid-cols-4 gap-4 mb-10">
+
+        {% for career in renderMyRecCareer %}
+    
+        
+        <a href="/mycareer/{{ career.careername }}/" class=" bg-indigo-100 border border-2 rounded-md shadow-md py-16 px-6">
+            <div class="text-center font-bold text-xl mb-2 p-1 rounded-md font-bold">{{ career.careername }}</div>
+            <div class="font-bold text-md mb-2 p-1 rounded-md">{{ career.description }}</div>
+            <div class="font-bold text-sm mb-2 p-1 rounded-md">duration{{ career.duration }}</div>
+        </a>
+        {% endfor %}
+    </div>
+
+
+
+    {% endif %}
+
+
+    
+    
+    
+    
+</div>
+{% endblock content %}
+

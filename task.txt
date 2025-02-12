@@ -113,18 +113,87 @@ ref :
 
 
 
+
+# Alternate options
+
+- 1st give road map on 1st entered dream role
+
+- if change the then give 
+    - reason, next desire goal(if any), yout current KT subjects
+
+
+- it will suggest 5 switch field of study options
+
+- select it to see its time line
+
+
+
+model.py
+
+mycareerdisplay(subject cards)
+- id 
+- username
+- careername
+- cancel : 0/1
+:filter (username, careername, cancel)
+
+
+
+mycareerdetailed (topics)
+- id
+- username
+- careername
+- topic
+- content
+- duration
+- date
+- done : 0/1 (when all subtopics done then this done)
+:filter (username, careername, done)
+
+
+
+mycareertaskdetailed (subtopics)
+- id
+- username
+- careername
+- topic
+- subtopics
+- content
+- duration
+- date
+- done : 0/1
+:filter (username, careername, topic, done)
+
+
+
+
+
+
+
+
 - Calender fix
 
 
 [@APP]
-# Pay with card
 
-# Business model : 
-- prime badges
-- prime mentors
-- prime certification
-- resume Assistment : (in detailed, improvements)
-- dynamic timeline : (based on campus placement, based on skills, dream role (rankeing))
+
+
+
+
+
+
+
+
+
+
+    # Pay with card
+
+    # Business model : 
+    - prime badges
+    - prime mentors
+    - prime certification
+    - resume Assistment : (in detailed, improvements)
+    - dynamic timeline : (based on campus placement, based on skills, dream role (rankeing))
 
 
 

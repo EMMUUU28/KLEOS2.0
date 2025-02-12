@@ -1,0 +1,123 @@
+digraph {
+	rankdir=LR
+	"Introduction to Geology"
+	"Definition and Scope"
+	"Introduction to Geology" -> "Definition and Scope"
+	"Branches of Geology"
+	"Introduction to Geology" -> "Branches of Geology"
+	"Importance of Geology"
+	"Introduction to Geology" -> "Importance of Geology"
+	Geology -> "Introduction to Geology"
+	Mineralogy
+	"Mineral Properties"
+	"Physical Properties"
+	"Mineral Properties" -> "Physical Properties"
+	"Chemical Properties"
+	"Mineral Properties" -> "Chemical Properties"
+	Mineralogy -> "Mineral Properties"
+	"Mineral Identification"
+	Mineralogy -> "Mineral Identification"
+	Crystallography
+	Mineralogy -> Crystallography
+	Geology -> Mineralogy
+	Petrology
+	"Igneous Rocks"
+	Formation
+	"Igneous Rocks" -> Formation
+	Classification
+	"Igneous Rocks" -> Classification
+	Petrology -> "Igneous Rocks"
+	"Sedimentary Rocks"
+	Formation
+	"Sedimentary Rocks" -> Formation
+	Classification
+	"Sedimentary Rocks" -> Classification
+	Petrology -> "Sedimentary Rocks"
+	"Metamorphic Rocks"
+	Formation
+	"Metamorphic Rocks" -> Formation
+	Classification
+	"Metamorphic Rocks" -> Classification
+	Petrology -> "Metamorphic Rocks"
+	Geology -> Petrology
+	"Structural Geology"
+	"Rock Deformation"
+	Folding
+	"Rock Deformation" -> Folding
+	Faulting
+	"Rock Deformation" -> Faulting
+	"Structural Geology" -> "Rock Deformation"
+	"Geological Maps"
+	"Structural Geology" -> "Geological Maps"
+	Geology -> "Structural Geology"
+	Paleontology
+	"Fossilization Process"
+	Paleontology -> "Fossilization Process"
+	"Types of Fossils"
+	Paleontology -> "Types of Fossils"
+	"Evolutionary Biology"
+	Paleontology -> "Evolutionary Biology"
+	Geology -> Paleontology
+	Geophysics
+	Seismology
+	Earthquakes
+	Seismology -> Earthquakes
+	"Seismic Waves"
+	Seismology -> "Seismic Waves"
+	Geophysics -> Seismology
+	Magnetism
+	Geophysics -> Magnetism
+	Gravimetry
+	Geophysics -> Gravimetry
+	Geology -> Geophysics
+	Hydrogeology
+	"Water Cycle"
+	Hydrogeology -> "Water Cycle"
+	"Groundwater Flow"
+	Hydrogeology -> "Groundwater Flow"
+	"Aquifer Properties"
+	Hydrogeology -> "Aquifer Properties"
+	Geology -> Hydrogeology
+	"Environmental Geology"
+	"Natural Hazards"
+	Earthquakes
+	"Natural Hazards" -> Earthquakes
+	Volcanoes
+	"Natural Hazards" -> Volcanoes
+	Landslides
+	"Natural Hazards" -> Landslides
+	"Environmental Geology" -> "Natural Hazards"
+	Pollution
+	"Water Pollution"
+	Pollution -> "Water Pollution"
+	"Soil Pollution"
+	Pollution -> "Soil Pollution"
+	"Air Pollution"
+	Pollution -> "Air Pollution"
+	"Environmental Geology" -> Pollution
+	Geology -> "Environmental Geology"
+	"Economic Geology"
+	"Ore Deposits"
+	"Economic Geology" -> "Ore Deposits"
+	"Mining Techniques"
+	"Economic Geology" -> "Mining Techniques"
+	"Resource Management"
+	"Economic Geology" -> "Resource Management"
+	Geology -> "Economic Geology"
+	"Field Methods"
+	"Geological Mapping"
+	"Field Methods" -> "Geological Mapping"
+	"Sampling Techniques"
+	"Field Methods" -> "Sampling Techniques"
+	"Geophysical Surveys"
+	"Field Methods" -> "Geophysical Surveys"
+	Geology -> "Field Methods"
+	"Research and Careers"
+	"Academic Research"
+	"Research and Careers" -> "Academic Research"
+	"Industry Careers"
+	"Research and Careers" -> "Industry Careers"
+	"Government and Policy"
+	"Research and Careers" -> "Government and Policy"
+	Geology -> "Research and Careers"
+}

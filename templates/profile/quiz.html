@@ -1,0 +1,109 @@
+{% extends 'base.html' %}
+{% block cssstyle %}{% endblock cssstyle %}
+
+{% block content %}
+<h1 class="p-4">My YT Quizer</h1>
+
+<div class="container my-5">
+    {% if filter == 'all' %}
+    <form id="formAuthentication" class="mb-3" method="POST" action="{% url 'quiz' myslug='all' %}">
+        {% csrf_token %}
+        <div class="row g-3">
+            <div class="col-md-9">
+                <input type="text" class="form-control" id="entercareer" name="ytlink" placeholder="Enter your youtube link ..." autofocus>
+            </div>
+            <div class="col-md-3">
+                <button class="btn btn-primary w-100" type="submit">Submit</button>
+            </div>
+        </div>
+    </form>
+    {% endif %}
+
+    {% if filter == "all" %}
+    <div class="mb-2">My Career Options...</div>
+    <div class="grid grid-cols-4 gap-4">
+        {% for item in allQuizes %}
+        <a href="/quiz/{{ item.quiz.id }}/" class="">
+            <div class="p-4 py-5 border bg-indigo-100 text-center h-100">
+                <div class="fw-bold text-lg"></div>
+                <div class="fw-bold text-lg">{{ item.quiz.question }}</div> <!-- Or any other field you want to display -->
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+    
+    {% else %}
+
+    
+
+    {% if fullQuiz != 'none' %}
+    <div class="mb-10 text-2xl text-center">Quiz : {{fullQuiz.0.user_name | title}} - {{fullQuiz.0.ytlink}}</div>
+    <div class="grid grid-cols-2 gap-4">
+    
+
+            {% for question in fullQuiz %}
+                
+                {% if question.useranswer != "none" %}
+                <div class="mb-10 {% if question.useranswer != 'none' %}select-none{% endif %}">
+                    <div class="text-xl mb-5 h-20 p-2 border px-4 rounded-md bg-indigo-100 select-none">
+                        {% if question.useranswer != "none" %}
+                            <i class="fa-solid fa-square-check text-green-600 mr-2"></i>
+                        {% else %}
+                            <i class="fa-solid fa-square-xmark text-red-600 mr-2"></i>
+                        {% endif %}
+                        {{question.question}}</div>
+                    <div class="grid grid-cols-2 gap-4 select-none">
+                            {% for option in question.options %}
+                                    <!-- <div class="p-2 border border-2 rounded-md shadow shadow-indigo-100">{{option}}</div> -->
+                                    <a class="p-2 border border-2 rounded-md shadow shadow-indigo-100 select-none 
+                                    {% if   option == question.useranswer and question.correctanswer == question.useranswer %}bg-green-500 text-white
+                                    {% elif option == question.useranswer and question.correctanswer != question.useranswer %}bg-red-500 text-white{% endif %}
+                                    ">{{option}}</a>
+                            {% endfor %}
+                    </div>
+                    {% if question.useranswer != "none" %}<div class="mt-2"><p class="text-green-500 inline">Correct : {{question.correctanswer}}</p> , 
+                        <p class="text-indigo-500 inline">User : {{question.useranswer}}</p></div>{% endif %}
+
+                </div>
+                {% else %}
+                <div class="mb-10 {% if condition %}text-2xl{% endif %}">
+                    <div class="text-xl mb-5 h-20 p-2 border px-4 rounded-md bg-indigo-100">
+                        {% if question.useranswer != "none" %}
+                            <i class="fa-solid fa-square-check text-green-600 mr-2"></i>
+                        {% else %}
+                            <i class="fa-solid fa-square-xmark text-red-600 mr-2"></i>
+                        {% endif %}
+                        {{question.question}}</div>
+                    <div class="grid grid-cols-2 gap-4">
+                            {% for option in question.options %}
+                                    <!-- <div class="p-2 border border-2 rounded-md shadow shadow-indigo-100">{{option}}</div> -->
+                                    <a href="/quizdone/{{question.id}}/{{option}}" class="p-2 border border-2 rounded-md shadow shadow-indigo-100 hover:bg-indigo-500 hover:text-white">{{option}}</a>
+                            {% endfor %}
+                    </div>
+                    {% if question.useranswer != "none" %}<div class="mt-2"><p class="text-green-500 inline">Correct : {{question.correctanswer}}</p> , 
+                    <p class="text-indigo-500 inline">User : {{question.useranswer}}</p></div>{% endif %}
+
+                </div>
+                {% endif %}
+                
+                
+
+            {% endfor %}
+        </div>
+
+    <div class="text-xl text-center text-red-400">X----------------X-------END-------X----------------X</div>
+    {% endif %}
+
+
+
+    {% endif %}
+
+
+
+
+
+
+
+    
+</div>
+{% endblock content %}
